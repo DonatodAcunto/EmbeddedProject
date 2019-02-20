@@ -1,0 +1,243 @@
+\section{Intel Movidius Neural Compute Stick}
+\label{sec:movidius}
+Today, low-power consumption is indispensable for unmanned vehicles and 
+IoT\footnote{Internet of Things} devices.
+In order to develop deep learning inference application at the edge, we can use 
+Intel’s both energy efficient and low cost Movidius 
+USB\footnote{Universal Serial Bus} stick (figure \ref{fig:movidius}).
+Movidius Neural Compute Stick (NCS) is produced by Intel and can be run 
+without any need of Intenet. 
+This software development kit enables rapid prototyping, validation, and 
+deployment of deep neural networks. 
+Profiling, tuning, and compiling a DNN on a development computer is possible 
+with the tools provided by the Intel Movidius Neural Compute SDK.
+The Movidius NCS’ compute capability comes from Myriad 2 VPU\footnote{Vision Processing Unit}.
+Intel Movidius VPUs drive the demanding workloads of modern computer vision 
+and AI applications at ultra-low power. 
+By coupling highly parallel programmable compute with workload-specific hardware 
+acceleration, and co-locating these components on a common intelligent memory 
+fabric, Movidius achieves a unique balance of power efficiency and high performance. 
+Movidius technology allows device makers to deploy deep neural network and 
+computer vision applications in categories such as smart-phones, drones, 
+intelligent cameras and augmented reality devices.
+Running Deep Learning models efficiently on low capacity graph processors is 
+very painful. 
+Movidius allows us to optimize the operation of large models such as GoogLeNet.
+with multi-use support.
+It is an easy-to-use kit that allows you to design and implement applications 
+such as classification and object recognition as physical products.
+We can simply think of Movidius NCS as a GPU\footnote{Graphics Processing Unit} 
+running on USB. 
+However, training of the model is not performed on this unit, the trained model 
+works optimally on the unit and is intended to be used in physical environments 
+for testing purposes.
+%
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\linewidth]{movidius}
+\caption{Intel Movidius in package}
+\label{fig:movidius}
+\end{figure}
+%
+\subsection{Inside Intel Movidius}
+\label{subsec:techspec}
+Movidius provides the ultimate in low-power vision processing solutions, which 
+include the Myriad 2 family of vision processing units (VPUs) plus a 
+comprehensive Myriad Development Kit, a reference hardware EVM and 
+optional Machine Vision Application Packages.
+The Myriad 2 MA2x5x family of system-on-a-chip (SoC)\footnote{System on Chip} 
+devices offers significant computation performance and image processing 
+capability with a low-power footprint.
+The Myriad 2 line up includes the following product configurations:
+\begin{itemize}
+	\item	MA2150: 1 Gbit DDR
+	\item	MA2155: 1 Gbit DDR and secure boot 
+	\item	MA2450: 4 Gbit DDR
+	\item	MA2455: 4 Gbit DDR and secure boot
+\end{itemize}
+%
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.65\linewidth]{system}
+\caption{System example}
+\label{fig:systemexample}
+\end{figure}
+% 
+Myriad 2 VPUs offer TeraFLOPS (trillions of floating-point operations per 
+second) of performance within a nominal 1 Watt power envelope. 
+The Myriad 2 architecture, show in figure \ref{fig:architecture}, includes enough 
+performance to support multiple cameras with flexible image signal processing 
+pipelines for each camera, and software programmable vision processing with 
+fixed- and floating-point data-types supported.
+A robust overall data-flow design ensures mitigation of processing bottlenecks.
+Myriad 2 MA2x5x incorporates an innovative approach to combine image signal 
+processing with vision processing.\\ 
+A set of imaging/vision hardware accelerators supports a world-class ISP pipeline 
+without any round trips to memory; at the same time they are re-purposed to 
+accelerate developers' vision processing algorithms in conjunction with a set of 
+special purpose VLIW\footnote{Very Long Instruction Word} vision processor cores. 
+All processing elements are tied together with a multi-ported memory that enables 
+implementation of demanding applications with high efficiency.\cite{intel}\\
+\\MYRIAD 2 SoC SPECIFICATIONS\\
+\begin{itemize}
+	\item Heterogeneous, high throughput, multi-core architecture based on:
+	\begin{itemize}
+		\item 12 VLIW 128-bit vector SHAVE Processors optimized for machine vision
+		\item Configurable hardware accelerators for image and vision processing, with line-buffers enabling zero local memory access ISP mode
+		\item 2 x 32-bit RISC processors 
+		\item Supports data and task parallelism 
+		\item Programmable Interconnect
+		\end{itemize}
+		\item Support for 16/32-bit floating point and 8/16/32-bit integer operations
+		\item Homogeneous, centralized memory architecture
+		\item 2MB of on-chip memory
+		\item 400 GB/sec of sustained internal memory bandwidth
+		\item 256 KB of L2 Cache
+		\item Power management: 20 power islands; low power states
+		\item Nominal 600 MHz operation at 0.9 V
+		\item Rich set of interfaces:
+		\begin{itemize}
+			\item 12 Lanes MIPI, 1.5 Gbps per lane configurable as CSI-2 or DSI
+			\item I2C, SPI for control and configuration
+			\item I2S for audio input
+			\item Banks of configurable GPIO, PWM
+			\item USB3 with integrated PHY
+			\item 2-Slot SDIO
+			\item Debug interface
+			\item 1 Gbit Ethernet
+		\end{itemize}
+		\item Available package configurations:
+		\begin{itemize}
+			\item MA2150/MA2155: 6.5mm x 6.5mm 0.4mm pitch, 225 Ball BGA 1Gb LPDDR II
+			\item MA2450/MA2455: 8mm x 9.5mm 0.5mm pitch, 270 Ball BGA, 4Gb LPDDR III
+		\end{itemize}
+		\item Advanced low-power 28nm HPC process node
+\end{itemize}
+%
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\linewidth]{core}
+\caption{MYRIAD 2 SoC architecture}
+\label{fig:architecture}
+\end{figure}
+%
+\section{Validate a network}
+\label{sec:checknetwork}
+The Intel Movidius Neural Compute SDK enables rapid prototyping and deployment 
+of deep neural networks (DNNs) on compatible neural compute devices like the 
+Intel Movidius Neural Compute Stick.\\ 
+The NCSDK includes a set of software tools to compile, profile, and check 
+(validate) DNNs, as well as the Intel Movidius Neural Compute API (Intel 
+Movidius NCAPI) for the development of applications in C/C++ or Python.
+The NCSDK has two general usages:
+\begin{enumerate}
+	\item Profiling, tuning, and compiling a DNN model on a development computer 
+	(\emph{host system}) with the tools provided in the NCSDK.
+	\item Prototyping a user application on a development computer (\emph{host system}), 
+which accesses the neural compute device hardware in order to accelerate DNN 
+inferences using the NCAPI. 
+\end{enumerate}
+Once the neural network training is complete, the file containing the 
+definitions and weights of the various levels must be checked for compatibility 
+by using the Intel NCSDK command line tool.
+%
+\subsection{Check network}
+\label{subsect:mvnCCheck} 
+As part of the NCSDK, mvnCheck is a command line tool that checks the validity 
+of TensorFlow neural network on a neural compute device.
+The check is done by running an inference on both the device and in software on
+the host computer using the supplied network and appropriate framework
+libraries.  
+The results for both inferences are compared to determine a if the
+network  passes or fails. The top 5 inference results are provided as output.
+This tool works best with image classification networks. 
+As part of the NCSDK, mvNCCheck serves three main purposes:
+%
+\begin{itemize} 
+	\item ensure accuracy when the data is converted from \texttt{fp32} to \texttt{fp16};
+	\item quickly find out if a network is compatible with the Intel NCS; 
+	\item quickly debug the network layer by layer;
+\end{itemize} 
+%
+To ensure accurate results, mvNCCheck compares inference results between the 
+Intel Movidius NCS and the network’s native framework. 
+Since the Intel Movidius NCS and NCSDK use 16-bit floating point data, it must 
+convert the incoming 32-bit floating point data to 16-bit floats. 
+The conversion from \texttt{fp32} to \texttt{fp16} can cause minor rounding issues to
+occur in the inference results, and this is where the mvNCCheck tool can come in
+handy. 
+%
+First the mvNCCheck tool reads in the network and converts the model to Intel
+Movidius NCS format. It then runs an inference through the network on the Intel
+Movidius NCS, and it also runs an inference with the network’s native framework.
+%
+Finally the mvNCCheck tool displays a brief report that compares inference
+results from the Intel Movidius NCS and from the native framework. 
+These results can be used to confirm that a neural network is producing accurate 
+results after the \texttt{fp32} to \texttt{fp16} conversion on the Intel Movidius NCS. 
+%
+mvNCCheck can also be used as a tool to simply check if a network is compatible
+with the Intel Movidius NCS. There are a number of limitations that could cause
+a network to not be compatible with the Intel Movidius NCS including, but not
+limited to, memory constraints, layers not being supported, or unsupported
+neural network architectures.\\\\
+\begin{mycolorbox}[colback=light-gray]
+	{\tiny\texttt{\input{check.tex}}}
+\end{mycolorbox}
+%
+\\\\Now the output of mvNCCheck above (box above) will be examined:
+\begin{itemize}
+\item The first three lines represent the top five Intel NCS inference results. 
+\item The following second three lines are the top five framework outcomes from 
+either Caffe or TensorFlow.
+\item The comparison output (indicates as ``\emph{Obtained values}") shows 
+various comparisons between the two inference results.
+\end{itemize}
+%
+\subsection{Profile a network}
+As seen before in section (\ref{sec:checknetwork}), mvNCProfile is part of the 
+SDK. It runs the network on a connected neural 
+compute device, and then outputs texts (box below) and HTML profile reports.
+The profiling data contains layer-by-layer statistics about the performance of 
+the network. 
+This is helpful in determining how much time is spent on each layer to narrow 
+down potential changes to the network to improve the total inference time.\\\\
+{\tiny\texttt{\input{profile.tex}}}
+%
+\subsection{Compile network}
+\label{subsec:compilenetwork}
+Once the compatibility has been verified using the tools of the 
+trained network, it is necessary to perform the compilation by the tool mvNCCompile.
+In fact, the tool (made available by Intel) allows to compile the file obtained by
+simply typing the following expression from the command line:\\
+{\setstretch{1.5}
+\\
+\begin{mycolorbox}[colback=light-gray]
+	\scriptsize{\texttt{\$ mvNCCompile model.pb -s 12 -in input\_1 \\-on predictions/Softmax -is 224 224 \\-o conv\_model.graph}}
+\end{mycolorbox}
+}
+\\In the command of the above expression, some arguments are present.
+Now, they will be examined:
+\begin{itemize}
+\item \textbf{model.pb} the trained network file.
+\item \textbf{[-s max\_number\_of\_shaves]} Specify the maximum number of SHAVEs 
+to use for network layers (default: 1).
+The number of available SHAVEs depends on your neural compute device; refer to 
+figure \ref{fig:architecture}
+\item \textbf{[-in input\_node\_name]} This option is required for TensorFlow 
+networks. 
+You can use the name parameter (available for most layers) when creating your 
+network and pass that name into this option.
+\item \textbf{[-on output\_node\_name]} Specify an alternative end point for the 
+network. 
+By default the network’s end point is the output layer. 
+This option enables partial network processing. When used together with the 
+-in option, the user can isolate one or more layers in a network for analysis.
+\item \textbf{[-is input\_width input\_height]} Specify input dimensions for 
+networks that do not have dimension constraints on the input layer.
+This option assumes that the batch size is 1 and the number of channels is 3.
+\item \textbf{[-o output\_graph\_filename]} Specify an output graph file-name. 
+If this is not provided, \emph{``graph"} will be used for the file-name.
+\end{itemize}
+Once the model is converted into a format readable by the Movidius device, the 
+inference can be performed on a laptop or any other devices, such as Raspberry board.

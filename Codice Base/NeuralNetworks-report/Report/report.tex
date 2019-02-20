@@ -1,0 +1,75 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\usepackage[skins]{tcolorbox}
+\usepackage{setspace}
+\tcbset{commonstyle/.style={boxrule=0pt,sharp corners,enhanced jigsaw,nobeforeafter,
+	boxsep=0pt,left=\fboxsep,right=\fboxsep}}
+\newtcolorbox{mycolorbox}[1][]{commonstyle,#1}
+\usepackage{array}
+\usepackage{color}
+\usepackage{colortbl}
+
+%--------package image---------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{subfig}
+\graphicspath{{./imgs/}}
+\renewcommand{\figurename}{Fig.}
+
+%-------package tikz-----------------------------------------------------------
+\usepackage{tikz,fp,ifthen,fullpage}
+\usepackage{pgfmath}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{decorations.pathmorphing,backgrounds,fit,calc,through,
+decorations.markings}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes,decorations,shadows}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{mindmap}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.shapes}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+%--------------------------Document--------------------------------------------
+\begin{document}
+%Here goes the title
+	\title{Rapid development of a neural network for image classification using 
+	fine-tuning techniques and implementation on SoC systems}
+%Authors List
+	\author
+	{\IEEEauthorblockN{Francesco Argentieri}
+		\IEEEauthorblockA{ID 183892\\
+		Email: francesco.argentieri@studenti.unitn.it}
+		%\and
+		%\IEEEauthorblockN{Author 2}
+		%\IEEEauthorblockA{University\\
+		%Location\\
+		%Email: }
+	}
+	\maketitle
+%Main body
+	% abstract
+	\input{abstract.tex}
+% define keyword
+	\begin {IEEEkeywords}
+		Python, Keras, Movidius, Intel, Neural Network, Inception, TensorFlow, 
+		ImageNet, ncsdk, API, backend.
+	\end{IEEEkeywords}
+	%Introduction
+	\input{introduction.tex}
+	\input{keras.tex}
+	\input{cnn.tex}
+	\input{project.tex}
+	\input{movidius.tex}
+	\input{conclusion.tex}
+	% bibliography
+	\bibliographystyle{IEEEtran}
+	\bibliography{my-bibliography}
+\end{document}
