@@ -15,6 +15,7 @@ vector<string> get_all_files_names_within_folder(string folder);
 
 int main()
 {
+    //modifica alba
 	// List of files
 	vector<string> pictures_files;
 	pictures_files = get_all_files_names_within_folder("C:/Users/docdo/Documents/GitHub/EmbeddedProject/Immagini Prova Ordinate");
